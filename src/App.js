@@ -37,8 +37,9 @@ function App() {
     <div className="App">
       <AuthProvider>
         <Router>
-          <Banner></Banner>
+
           <Navigation></Navigation>
+          <Banner></Banner>
           <Switch>
 
             <Route exact path="/">
