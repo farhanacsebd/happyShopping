@@ -12,7 +12,7 @@ const Services = () => {
     const [displayProducts, setDisplayProducts] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [page, setPage] = useState(0);
-    const size = 20;
+    const size = 21;
 
     useEffect(() => {
         fetch(`https://evening-river-34859.herokuapp.com/services?page=${page}&&size=${size}`)
