@@ -30,16 +30,18 @@ import { render } from "react-dom";
 import AdminRoute from "./Pages/Login/AdminRoute/AdminRoute";
 import ManageAllProduct from "./Pages/ManageAllProduct/ManageAllProduct";
 import Contact from "./Pages/Contact/Contact";
+import Banner from "./Pages/Home/Home/Banner/Banner";
 
 function App() {
   return (
     <div className="App">
       <AuthProvider>
         <Router>
+          <Banner></Banner>
           <Navigation></Navigation>
           <Switch>
 
-          <Route exact path="/">
+            <Route exact path="/">
               <Home />
             </Route>
             <Route path="/home">
@@ -95,10 +97,10 @@ function App() {
             <Route path="*">
               <NotFound />
             </Route>
-            
+
 
           </Switch>
-    
+
 
 
 
