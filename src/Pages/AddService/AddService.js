@@ -12,7 +12,7 @@ const AddService = () => {
     const onSubmit = data => {
         console.log(data);
 
-        axios.post('http://localhost:5000/services', data)
+        axios.post('https://evening-river-34859.herokuapp.com/services', data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('Product added successfully');
@@ -23,15 +23,15 @@ const AddService = () => {
 
     return (
         <div className="add-service">
-            <Typography sx variant="h4" component="div" sx={{ flexGrow: 1 , m: 3 }}>
-           
-               
-            <Typed
-strings={[' Add Product']}
-typeSpeed={150}
-/>
-<br/>
-                    </Typography>
+            <Typography sx variant="h4" component="div" sx={{ flexGrow: 1, m: 3 }}>
+
+
+                <Typed
+                    strings={[' Add Product']}
+                    typeSpeed={150}
+                />
+                <br />
+            </Typography>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input {...register("name", { required: true, maxLength: 20 })} placeholder="Name" />
                 <textarea {...register("description")} placeholder="Description" />

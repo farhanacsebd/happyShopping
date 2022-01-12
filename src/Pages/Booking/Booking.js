@@ -1,4 +1,4 @@
-import { Grid,Box } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 import axios from 'axios';
 import './Booking.css'
 import React, { useEffect, useState } from 'react';
@@ -13,18 +13,18 @@ import useAuth from '../../hooks/useAuth';
 const Booking = () => {
     const { serviceId } = useParams();
     const [service, setService] = useState({});
-    const {user} = useAuth();
-    
+    const { user } = useAuth();
+
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/services/${serviceId}`)
+        fetch(`https://evening-river-34859.herokuapp.com/services/${serviceId}`)
             .then(res => res.json())
             .then(data => setService(data))
     }, [])
 
 
-    const { register, handleSubmit,reset} = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         console.log(data);
 
@@ -33,7 +33,7 @@ const Booking = () => {
         const bookingItem = { ...data, status };
 
 
-        axios.post('http://localhost:5000/buyer', bookingItem)
+        axios.post('https://evening-river-34859.herokuapp.com/buyer', bookingItem)
             .then(res => {
                 // console.log(res);
                 if (res.data.insertedId) {
@@ -42,45 +42,45 @@ const Booking = () => {
                 }
             })
 
-        }
+    }
 
 
     return (
 
         <Box sx={{ flexGrow: 1, mt: 3 }}>
-        <Grid container spacing={2} columns={ {xs: 4, sm: 8, md: 12}}>
-          <Grid item  xs={4} sm={4} md={4}>
-          <div>
-            <img style={{width:"50%"}} src={service.img} alt="" />
-            <h3>{service.name}</h3>
-            <h5>Price: {service.price}</h5>
-            <p>{service.description}</p>
+            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
+                <Grid item xs={4} sm={4} md={4}>
+                    <div>
+                        <img style={{ width: "50%" }} src={service.img} alt="" />
+                        <h3>{service.name}</h3>
+                        <h5>Price: {service.price}</h5>
+                        <p>{service.description}</p>
 
-        </div>
-          </Grid>
-          <Grid item xs={4} sm={4} md={4} sx={{ ml:5 }}>
-            
-                <div className="add-booking" >
-                <form onSubmit={handleSubmit(onSubmit)}>
-                <input {...register("name", { required: true, maxLength: 150 })} defaultValue={user.displayName} />
-                <input {...register("email", { required: true, maxLength: 150 })} defaultValue={user.email} />
-                {/* dynamic name  */}
-                <input {...register("productName", { required: true, maxLength: 150 })} defaultValue={service?.name} />
-                <input {...register("price", { required: true, maxLength: 150 })} defaultValue={service?.price} />
-                
-                <textarea {...register("address", { required: true, maxLength: 150 })} placeholder="Address" />
-                <input type="date" {...register("date", { required: true, maxLength: 150 })} placeholder="order date" />
-                <input type="number" {...register("contactNumber", { required: true, maxLength: 150 })} placeholder="contact-number" />
-                
-                
-                <input type="submit"  className="btn btn-regular bg-success"/>
-            </form>
-                </div>
+                    </div>
+                </Grid>
+                <Grid item xs={4} sm={4} md={4} sx={{ ml: 5 }}>
+
+                    <div className="add-booking" >
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <input {...register("name", { required: true, maxLength: 150 })} defaultValue={user.displayName} />
+                            <input {...register("email", { required: true, maxLength: 150 })} defaultValue={user.email} />
+                            {/* dynamic name  */}
+                            <input {...register("productName", { required: true, maxLength: 150 })} defaultValue={service?.name} />
+                            <input {...register("price", { required: true, maxLength: 150 })} defaultValue={service?.price} />
+
+                            <textarea {...register("address", { required: true, maxLength: 150 })} placeholder="Address" />
+                            <input type="date" {...register("date", { required: true, maxLength: 150 })} placeholder="order date" />
+                            <input type="number" {...register("contactNumber", { required: true, maxLength: 150 })} placeholder="contact-number" />
 
 
-          </Grid>
-        </Grid>
-      </Box>
+                            <input type="submit" className="btn btn-regular bg-success" />
+                        </form>
+                    </div>
+
+
+                </Grid>
+            </Grid>
+        </Box>
     );
 };
 

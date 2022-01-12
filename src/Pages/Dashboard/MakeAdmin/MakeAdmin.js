@@ -14,7 +14,7 @@ const MakeAdmin = () => {
     }
     const handleAdminSubmit = e => {
         const user = { email };
-        fetch('http://localhost:5000/users/admin', {
+        fetch('https://evening-river-34859.herokuapp.com/users/admin', {
             method: 'PUT',
             headers: {
                 'authorization': `Bearer ${token}`,
@@ -34,14 +34,14 @@ const MakeAdmin = () => {
     }
     return (
         <div>
-            <Typography sx variant="h4" component="div" sx={{ flexGrow: 1 , m: 3 }}>
-            
-            <Typed
-strings={['Make Admin']}
-typeSpeed={150}
-/>
-<br/>
-                    </Typography>
+            <Typography sx variant="h4" component="div" sx={{ flexGrow: 1, m: 3 }}>
+
+                <Typed
+                    strings={['Make Admin']}
+                    typeSpeed={150}
+                />
+                <br />
+            </Typography>
             <p>Admin can make another admin</p>
             <form onSubmit={handleAdminSubmit}>
                 <TextField
