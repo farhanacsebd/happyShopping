@@ -99,7 +99,7 @@ const ManageAllOrder = () => {
                     <tbody>
                         {
                             users.map(user =>
-                                <tr style={{ backgroundColor: 'yellow' }}>
+                                <tr style={{ backgroundColor: 'white' }}>
                                     <td>{user.name}</td>
                                     <td>{user.address}</td>
                                     <td>{user.email}</td>
